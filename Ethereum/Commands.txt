@@ -1,0 +1,3 @@
+truffle migrate --reset
+truffle console
+Damage.deployed().then(function(i) { app=i })

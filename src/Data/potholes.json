@@ -1,0 +1,56 @@
+[
+  {
+    "id": "62e586d8-2b14-46f0-8733-4d840667451f",
+    "type": "Pothole",
+    "priority": "4",
+    "imageFile": "1",
+    "locName": "loc0",
+    "lat": "33.625",
+    "lng": "73.024"
+  },
+  {
+    "id": "70641833-bfaf-4319-b510-622f29517493",
+    "type": "Pothole",
+    "priority": "0",
+    "imageFile": "2",
+    "locName": "loc1",
+    "lat": "33.611",
+    "lng": "73.011"
+  },
+  {
+    "id": "991eaf22-a8e2-4fae-adeb-0a1f4c47a260",
+    "type": "Pothole",
+    "priority": "1",
+    "imageFile": "3",
+    "locName": "loc2",
+    "lat": "33.622",
+    "lng": "73.022"
+  },
+  {
+    "id": "5f8caa99-d65f-4493-8279-fcf3dc23452e",
+    "type": "Pothole",
+    "priority": "2",
+    "imageFile": "4",
+    "locName": "loc3",
+    "lat": "33.633",
+    "lng": "73.033"
+  },
+  {
+    "id": "c0f895ac-a39a-4296-bf21-159c5f1c8afa",
+    "type": "Pothole",
+    "priority": "3",
+    "imageFile": "5",
+    "locName": "loc4",
+    "lat": "33.644",
+    "lng": "73.044"
+  },
+  {
+    "id": "8652e1bb-f8ae-40ee-a511-fe7f6188798a",
+    "type": "Pothole",
+    "priority": "0",
+    "imageFile": "6",
+    "locName": "loc5",
+    "lat": "33.655",
+    "lng": "73.055"
+  }
+]

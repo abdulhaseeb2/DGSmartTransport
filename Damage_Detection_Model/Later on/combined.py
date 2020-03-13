@@ -11,7 +11,7 @@ w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:7545"))
 w3.isConnected()
 
 # Check the Use of api_key
-api_key = 'AIzaSyAxF3aGEjiG3EJ2R1vBCwH7zEoRb2gNSIc'
+api_key = ''
 
 g_login = GoogleAuth()
 g_login.LocalWebserverAuth()

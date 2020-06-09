@@ -3,7 +3,7 @@ import {
   Route,
   Switch,
   Redirect,
-  BrowserRouter as Router
+  BrowserRouter as Router,
 } from "react-router-dom";
 import { RoutedTabs, NavTab } from "react-router-tabs";
 
@@ -36,7 +36,7 @@ class App extends Component {
             <NavTab to="/report">Report</NavTab>
             <NavTab to="/history">History</NavTab>
             {/* <NavTab to="/options">Options</NavTab> */}
-            <NavTab to="/help">Help</NavTab>
+            {/* <NavTab to="/help">Help</NavTab> */}
             <Switch>
               <Route path={"/"} exact component={Fallback} />
               <Route path={"/home"} component={Home} />
@@ -45,6 +45,7 @@ class App extends Component {
               <Route path={"/history"} component={History} />
               <Route path={"/options"} component={Options} />
               <Route path={"/help"} component={Help} />
+              <Route component={Fallback} />
             </Switch>
           </React.Suspense>
         </Router>

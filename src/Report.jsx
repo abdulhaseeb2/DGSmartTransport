@@ -19,8 +19,10 @@ class Report extends Component {
           priority: "",
           location: "",
           latitude: "",
-          longitude: ""
-        }
+          longitude: "",
+          dash: 1,
+          app: 0,
+        },
       ],
       ethreportCopy: [
         {
@@ -29,8 +31,10 @@ class Report extends Component {
           priority: "",
           location: "",
           latitude: "",
-          longitude: ""
-        }
+          longitude: "",
+          dash: 1,
+          app: 0,
+        },
       ],
       no_reports: 0,
       sorting: [
@@ -42,9 +46,9 @@ class Report extends Component {
           location: false,
           latitude: false,
           longitude: false,
-          date: false
-        }
-      ]
+          date: false,
+        },
+      ],
     };
   }
 
@@ -70,7 +74,7 @@ class Report extends Component {
 
   async seeData() {
     this.setState({
-      no_reports: await this.state.contract.methods.getDamageCount().call()
+      no_reports: await this.state.contract.methods.getDamageCount().call(),
     });
     try {
       //console.log(this.state.contract.methods);
@@ -90,7 +94,9 @@ class Report extends Component {
         location: "Islamabad",
         latitude: asd[2],
         longitude: asd[3],
-        priority: asd[4]
+        priority: asd[4],
+        dash: asd[5],
+        app: asd[6],
       });
       //console.log(asd)
     }
@@ -100,11 +106,11 @@ class Report extends Component {
     }
   }
 
-  onReportClick = id => {
+  onReportClick = (id) => {
     console.log("Clicked: " + id);
     this.setState({ expanded: !this.state.expanded });
   };
-  sortFunction = sort => {
+  sortFunction = (sort) => {
     let sorted = this.state.ethreport;
     if (sort === 1) {
       if (this.state.sorting.priority)
@@ -175,6 +181,14 @@ class Report extends Component {
     this.setState({ sorting: sorts }, () => console.log(this.state.sorting));
     //this.sortFunction(6);
   };
+
+  getImage = (id) => {
+    //yehan kaam kr k string return kri
+    //choices are: video-camera,twitter,smartphone
+
+    return "video-camera";
+  };
+
   renderList() {
     if (this.state.ethreport.length > 0) {
       let times = this.state.no_reports;
@@ -186,6 +200,7 @@ class Report extends Component {
       if (this.state.ethreport[0].id !== "") {
         for (let i = 0; i < times; ++i) {
           let data = this.state.ethreport[i];
+          let imageLoc = this.getImage(data.id);
           console.log(data);
           inputs.push(
             <ReportDetails
@@ -193,6 +208,8 @@ class Report extends Component {
               id={data.id}
               priority={parseInt(data.priority)}
               type={data.type}
+              img1={1}
+              img2={0}
               loc={data.location}
               lat={data.latitude}
               lng={data.longitude}
@@ -258,8 +275,8 @@ class Report extends Component {
         location: "",
         latitude: "",
         longitude: "",
-        date: ""
-      }
+        date: "",
+      },
     ];
     this.setState({ ethreportCopy: khaali }, () =>
       console.log(this.state.ethreportCopy)
@@ -279,7 +296,6 @@ class Report extends Component {
                 console.log("ID called");
                 this.clearTable();
                 this.sortID();
-                this.populateTable();
               }}
             >
               ID

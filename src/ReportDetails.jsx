@@ -6,13 +6,15 @@ class ReportDetails extends Component {
   state = {
     id: this.props.id,
     type: this.props.type,
+    img1: this.props.img1,
+    img2: this.props.img2,
     priority: this.props.priority,
     lat: this.props.lat,
     lng: this.props.lng,
     loc: this.props.loc,
     open: false,
     account: "",
-    contract: ""
+    contract: "",
   };
   /*********************************************
     Toggle inner panel to be shown on click
@@ -65,10 +67,15 @@ class ReportDetails extends Component {
     else if (this.state.priority === 0) return "processing";
     else return "openContent";
   };
-  onUndoClick = e => {
+  onUndoClick = (e) => {
     console.log("deleting");
+    if (
+      window.confirm(
+        "Are you sure you wish to mark this item as fixed? It will be removed from this page."
+      )
+    )
     this.state.contract.methods
-      .undoDelete(this.state.id)
+      .deleteDamage(this.state.id)
       .send({ from: this.state.account, gas: 3000000 });
   };
   render() {
@@ -92,23 +99,53 @@ class ReportDetails extends Component {
           <div
             className="customTableOpen"
             //className={this.checkPriorityChild()}
-            onClick={e => {
+            onClick={(e) => {
               //this.updateData();
               //this.togglePanel(e);
             }}
           >
-            <p>{"Priority: " + this.getPriority()}</p>
-            <p>{"Latitude: " + this.state.lat}</p>
-            <p>{"Longitude: " + this.state.lng}</p>
-            <button className={"undoButton"} onClick={() => this.onUndoClick()}>
-              Undo
-            </button>
-            {/*
-             <MapContainer
-              //data={crashes.concat(potholes)}
-              markers={this.state}
-            />
-             */}
+            <div>
+              {this.state.img1 === 1 ? 
+            (
+            <img
+              alt="camera"
+              style={{ paddingLeft: "10vh" }}
+              src={
+                window.location.origin +
+                "/images/video-camera.png"
+              }
+            />):(<div></div>)
+  }
+  {this.state.img2 === 1 ? 
+            (
+            <img
+              alt="smartphone"
+              style={{ paddingLeft: "0vh" }}
+              src={
+                window.location.origin +
+                "/images/smartphone.png"
+              }
+            />):(<div></div>)
+  }
+              <text style={{ paddingLeft: "11vh", fontSize: "2em" }}>
+                {"Priority: "}
+                <b>{this.getPriority()}</b>
+              </text>
+              <text style={{ paddingLeft: "11vh", fontSize: "2em" }}>
+                {"Latitude: "}
+                <b>{this.state.lat}</b>
+              </text>
+              <text style={{ paddingLeft: "11vh", fontSize: "2em" }}>
+                {"Longitude: "}
+                <b>{this.state.lng}</b>
+              </text>
+              <button
+                className={"undoButton"}
+                onClick={() => this.onUndoClick()}
+              >
+                Mark Fixed
+              </button>
+            </div>
           </div>
         ) : null}
       </React.Fragment>

@@ -818,6 +818,7 @@ tr:nth-child(even) {
   color: white;
   padding: 15px 32px;
   margin: 15px;
+  margin-left: 130vh;
   text-align: center;
   text-decoration: none;
   font-size: 1rem;
@@ -842,4 +843,22 @@ tr:nth-child(even) {
   font-size: 4rem;
   top: 55%;
   left: 45%;
+}
+.reportsStats {
+  width: 15%;
+  left: 20%;
+  top: 75%;
+  position: absolute;
+}
+.fixedStats {
+  width: 15%;
+  left: 40%;
+  top: 75%;
+  position: absolute;
+}
+.unverifiedStats {
+  width: 15%;
+  left: 60%;
+  top: 75%;
+  position: absolute;
 }

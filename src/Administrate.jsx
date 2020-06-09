@@ -47,8 +47,10 @@ class Administrate extends Component {
           priority: 0,
           location: "",
           latitude: "",
-          longitude: ""
-        }
+          longitude: "",
+          dash: 1,
+          app: 0,
+        },
       ],
       unverified: [
         {
@@ -58,12 +60,14 @@ class Administrate extends Component {
           priority: 0,
           location: "",
           latitude: "",
-          longitude: ""
-        }
+          longitude: "",
+          dash: 0,
+          app: 1,
+        },
       ],
       no_reports: 0,
       loaded: false,
-      showAll: false
+      showAll: false,
     };
     this.loadBlockchainData();
   }
@@ -86,14 +90,14 @@ class Administrate extends Component {
 
   async seeData() {
     this.setState({
-      no_reports: await this.state.contract.methods.damageCount().call()
+      no_reports: await this.state.contract.methods.damageCount().call(),
     });
     var newArray = [];
     let unverifiedData = [];
     for (var i = 1; i <= this.state.no_reports; i++) {
       const asd = await this.state.contract.methods.getAllData(i).call();
       //sasta(?) fix for unverified potholes
-      if (parseInt(asd[4]) == 0)
+      if (parseInt(asd[4]) === 0)
         unverifiedData.push({
           id: i,
           type: asd[0],
@@ -101,7 +105,9 @@ class Administrate extends Component {
           priority: asd[4],
           location: "Islamabad",
           latitude: asd[2],
-          longitude: asd[3]
+          longitude: asd[3],
+          dash: asd[5],
+          app: asd[6],
         });
       else
         newArray.push({
@@ -111,7 +117,9 @@ class Administrate extends Component {
           priority: asd[4],
           location: "Islamabad",
           latitude: asd[2],
-          longitude: asd[3]
+          longitude: asd[3],
+          dash: asd[5],
+          app: asd[6],
         });
       //console.log(asd)
     }
@@ -128,6 +136,15 @@ class Administrate extends Component {
     //this. rkers();
   }
 
+  async getImage (id){
+    //yehan kaam kr k string return kri
+    //choices are: video-camera,twitter,smartphone
+    let arr = [0, 0];
+    arr[0] = await this.state.contract.methods.reportedFromDash(id).call();
+    arr[1] = await this.state.contract.methods.reportedFromApp(id).call();
+    //console.log(arr);
+    return arr;
+  };
   /*********************************************
   Method to render list of potholes
   *********************************************/
@@ -142,9 +159,15 @@ class Administrate extends Component {
       console.log(sorted);
       if (this.state.ethreport[0].id !== "") {
         for (let i = 0; i < times; ++i) {
-          let data = this.state.ethreport[i];
-          console.log(data);
+          
           try {
+            //let imageLoc = this.getImage(data.id);
+            //let img1 = imageLoc[0];//this.state.contract.methods.reportedFromDash(data.id).call();
+            //let img2 = imageLoc[1];//this.state.contract.methods.reportedFromApp(data.id).call();
+            let data = this.state.ethreport[i];
+            console.log(data);
+            console.log(data.dash);
+            console.log(data.app);
             inputs.push(
               <List
                 key={i}
@@ -152,6 +175,8 @@ class Administrate extends Component {
                 priority={parseInt(data.priority)}
                 type={data.type}
                 image={data.URL}
+                img1={1}
+                img2={0}
                 loc={data.location}
                 lat={data.latitude}
                 lng={data.longitude}
@@ -177,7 +202,7 @@ class Administrate extends Component {
           {
             tempShowingList: this.state.showingList,
             showingList: this.state.ethreport,
-            showAll: !this.state.showAll
+            showAll: !this.state.showAll,
           },
           () => {
             console.log("showing all admin: " + this.state.showAll);
@@ -188,7 +213,7 @@ class Administrate extends Component {
         this.setState(
           {
             showingList: this.state.tempShowingList,
-            showAll: !this.state.showAll
+            showAll: !this.state.showAll,
           },
           () => {
             console.log("showing all admin undo: " + this.state.showAll);
@@ -223,7 +248,7 @@ class Administrate extends Component {
   Update showingList according to clicks on list
   *********************************************/
 
-  updateData = e => {
+  updateData = (e) => {
     if (!this.state.showAll) {
       let newArr = this.state.showingList;
       let exists = false;
@@ -255,7 +280,7 @@ class Administrate extends Component {
   /*********************************************
   Handle fixed potholes and damages
   *********************************************/
-  onFixedClick = e => {
+  onFixedClick = (e) => {
     console.log("deleting");
     this.state.contract.methods
       .deleteDamage(e)
@@ -285,6 +310,7 @@ class Administrate extends Component {
                 this.state.currentImage
               }
               alt={this.state.currentImage}
+              style={{ maxWidth: "10vh" }}
             />
           )}
         </React.Fragment>

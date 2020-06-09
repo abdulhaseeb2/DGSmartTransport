@@ -21,8 +21,8 @@ class History extends Component {
           location: "",
           latitude: "",
           longitude: "",
-          date: ""
-        }
+          date: "",
+        },
       ],
       ethreportCopy: [
         {
@@ -32,8 +32,8 @@ class History extends Component {
           location: "",
           latitude: "",
           longitude: "",
-          date: ""
-        }
+          date: "",
+        },
       ],
       no_reports: 0,
       sorting: [
@@ -45,9 +45,9 @@ class History extends Component {
           location: false,
           latitude: false,
           longitude: false,
-          date: false
-        }
-      ]
+          date: false,
+        },
+      ],
     };
   }
   renderTableHeader() {
@@ -72,7 +72,7 @@ class History extends Component {
 
   async seeData() {
     this.setState({
-      no_reports: await this.state.contract.methods.getDeleteCount().call()
+      no_reports: await this.state.contract.methods.getDeleteCount().call(),
     });
     try {
       //console.log(this.state.contract.methods);
@@ -93,7 +93,7 @@ class History extends Component {
         latitude: delData[2],
         longitude: delData[3],
         priority: delData[4],
-        date: delData[5]
+        date: delData[5],
       });
     }
     console.log(newArray);
@@ -101,11 +101,11 @@ class History extends Component {
       this.setState({ ethreport: newArray, ethreportCopy: newArray });
     }
   }
-  onReportClick = id => {
+  onReportClick = (id) => {
     console.log("Clicked: " + id);
     this.setState({ expanded: !this.state.expanded });
   };
-  sortData = method => {
+  sortData = (method) => {
     let sorted = this.state.ethreport;
     if (method === 1) sorted.sort((a, b) => a.priority - b.priority);
     if (method === 2) sorted.sort((a, b) => b.priority - a.priority);
@@ -122,7 +122,7 @@ class History extends Component {
     if (method === 13) sorted.sort((a, b) => a.date - b.date);
     if (method === 14) sorted.sort((a, b) => b.date - a.date);
   };
-  sortFunction = sort => {
+  sortFunction = (sort) => {
     let sorted = this.state.ethreport;
     if (sort === 1) {
       if (this.state.sorting.priority)
@@ -203,6 +203,14 @@ class History extends Component {
     this.setState({ sorting: sorts }, () => console.log(this.state.sorting));
     //this.sortFunction(7);
   };
+
+  getImage = (id) => {
+    //yehan kaam kr k string return kri
+    //choices are: video-camera,twitter,smartphone
+
+    return "video-camera";
+  };
+
   renderList = () => {
     if (this.state.ethreportCopy.length > 0) {
       //console.log(this.state.ethreport[0]);
@@ -216,13 +224,14 @@ class History extends Component {
         //console.log(times);
         for (let i = 0; i < times; ++i) {
           let data = sorted[i];
+          let imageLoc = this.getImage(data.id);
           inputs.push(
             <HistoryDetails
               key={i}
               id={data.id}
               priority={parseInt(data.priority)}
               type={data.type}
-              image={data.URL}
+              imageLoc={imageLoc}
               loc={data.location}
               lat={data.latitude}
               lng={data.longitude}
@@ -299,8 +308,8 @@ class History extends Component {
         location: "",
         latitude: "",
         longitude: "",
-        date: ""
-      }
+        date: "",
+      },
     ];
     this.setState({ ethreportCopy: khaali }, () =>
       console.log(this.state.ethreportCopy)

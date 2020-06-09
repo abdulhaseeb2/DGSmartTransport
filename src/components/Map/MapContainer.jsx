@@ -104,6 +104,7 @@ export class MapContainer extends Component {
             src={
               "https://drive.google.com/uc?export=view&id=" + tempMarker.image
             }
+            style={{ maxWidth: "55vh" }}
             alt={tempMarker.image}
           />
         </div>

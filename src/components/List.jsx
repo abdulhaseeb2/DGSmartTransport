@@ -23,10 +23,12 @@ class List extends Component {
     image: this.props.image,
     type: this.props.type,
     priority: this.props.priority,
+    img1: this.props.img1,
+    img2: this.props.img2,
     lat: this.props.lat,
     lng: this.props.lng,
     loc: this.props.loc,
-    open: false
+    open: false,
   };
   /*********************************************
   Update showingList according to clicks on list
@@ -108,11 +110,33 @@ class List extends Component {
         {this.state.open ? (
           <div
             className={this.checkPriorityChild()}
-            onClick={e => {
+            onClick={(e) => {
               //this.updateData();
               //this.togglePanel(e);
             }}
           >
+            {this.state.img1 === 1 ? 
+            (
+            <img
+              alt="camera"
+              style={{ paddingLeft: "10vh" }}
+              src={
+                window.location.origin +
+                "/images/video-camera.png"
+              }
+            />):(<div></div>)
+  }
+  {this.state.img2 === 1 ? 
+            (
+            <img
+              alt="smartphone"
+              style={{ paddingLeft: "0vh" }}
+              src={
+                window.location.origin +
+                "/images/smartphone.png"
+              }
+            />):(<div></div>)
+  }
             <p>{"Priority: " + this.getPriority()}</p>
             <p>{"Latitude: " + this.state.lat}</p>
             <p>{"Longitude: " + this.state.lng}</p>

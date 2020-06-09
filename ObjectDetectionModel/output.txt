@@ -1,0 +1,8 @@
+[WindowsPath('models/research/object_detection/test_images/image1.jpg'), WindowsPath('models/research/object_detection/test_images/image2.jpg')]
+[<tf.Tensor 'image_tensor:0' shape=(None, None, None, 3) dtype=uint8>]
+{'raw_detection_boxes': TensorShape([None, None, 4]), 'detection_scores': TensorShape([None, 100]), 'raw_detection_scores': TensorShape([None, None, 2]), 'detection_classes': TensorShape([None, 100]), 'num_detections': TensorShape([None]), 'detection_boxes': TensorShape([None, 100, 4])}
+<PIL.Image.Image image mode=RGB size=1024x636 at 0x1EC60862FD0>
+<PIL.Image.Image image mode=RGB size=1352x900 at 0x1EC6087CFD0>
+{'raw_detection_boxes': TensorShape([None, None, 4]), 'detection_scores': TensorShape([None, 100]), 'raw_detection_scores': TensorShape([None, None, 2]), 'detection_classes': TensorShape([None, 100]), 'num_detections': TensorShape([None]), 'detection_boxes': TensorShape([None, 100, 4])}
+<PIL.Image.Image image mode=RGB size=1024x636 at 0x1EC023A40B8>
+<PIL.Image.Image image mode=RGB size=1352x900 at 0x1EC6087EC88>

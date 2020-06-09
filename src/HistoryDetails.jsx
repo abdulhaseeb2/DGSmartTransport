@@ -8,6 +8,7 @@ class HistoryDetails extends Component {
     id: this.props.id,
     image: this.props.image,
     type: this.props.type,
+    imageLoc: this.props.imageLoc,
     priority: this.props.priority,
     lat: this.props.lat,
     lng: this.props.lng,
@@ -15,7 +16,7 @@ class HistoryDetails extends Component {
     date: this.props.date,
     open: false,
     account: "",
-    contract: ""
+    contract: "",
   };
   /*********************************************
     Toggle inner panel to be shown on click
@@ -68,7 +69,7 @@ class HistoryDetails extends Component {
     else if (this.state.priority === 0) return "processing";
     else return "openContent";
   };
-  onUndoClick = e => {
+  onUndoClick = (e) => {
     console.log("deleting");
     if (
       window.confirm(
@@ -101,17 +102,41 @@ class HistoryDetails extends Component {
           <div
             className="customTableOpen"
             //className={this.checkPriorityChild()}
-            onClick={e => {
+            onClick={(e) => {
               //this.updateData();
               //this.togglePanel(e);
             }}
           >
-            <p>{"Priority: " + this.getPriority()}</p>
-            <p>{"Latitude: " + this.state.lat}</p>
-            <p>{"Longitude: " + this.state.lng}</p>
-            <button className={"undoButton"} onClick={() => this.onUndoClick()}>
-              Undo
-            </button>
+            <div>
+              <img
+                alt="camera"
+                style={{ paddingLeft: "10vh" }}
+                src={
+                  window.location.origin +
+                  "/images/" +
+                  this.state.imageLoc +
+                  ".png"
+                }
+              />
+              <text style={{ paddingLeft: "11vh", fontSize: "2em" }}>
+                {"Priority: "}
+                <b>{this.getPriority()}</b>
+              </text>
+              <text style={{ paddingLeft: "11vh", fontSize: "2em" }}>
+                {"Latitude: "}
+                <b>{this.state.lat}</b>
+              </text>
+              <text style={{ paddingLeft: "11vh", fontSize: "2em" }}>
+                {"Longitude: "}
+                <b>{this.state.lng}</b>
+              </text>
+              <button
+                className={"undoButton"}
+                onClick={() => this.onUndoClick()}
+              >
+                Undo
+              </button>
+            </div>
             {/*
              <MapContainer
               //data={crashes.concat(potholes)}

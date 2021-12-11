@@ -4,7 +4,7 @@ For detailed overview of project please refer to [doc](https://github.com/abdulh
 
 ## Poster
 
-()[https://github.com/abdulhaseeb2/DGSmartTransport/blob/master/FYPPoster-F19-24-D-DGSmartTransport.jpg]
+![](/FYPPoster-F19-24-D-DGSmartTransport.jpg)
 
 ## Run the model
 

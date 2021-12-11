@@ -1,5 +1,11 @@
 ## Road Damage Detection Model
 
+For detailed overview of project please refer to [doc](https://github.com/abdulhaseeb2/DGSmartTransport/blob/master/FYP1-FinalReport-F19-24-D-DGSmartTransport.pdf), user manual can be found on page 54 for better understanding of how the project works.
+
+## Poster
+
+()[]
+
 ## Run the model
 
 In order to run the model, run the detection notebook using the command:

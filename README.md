@@ -6,6 +6,10 @@ For detailed overview of project please refer to [doc](https://github.com/abdulh
 
 ![](/FYPPoster-F19-24-D-DGSmartTransport.jpg)
 
+## Demo
+
+[Demo video](https://www.youtube.com/watch?v=l04-Ph9FQf8)
+
 ## Run the model
 
 In order to run the model, run the detection notebook using the command:
